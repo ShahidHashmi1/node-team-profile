@@ -1,4 +1,3 @@
-// const { hasUncaughtExceptionCaptureCallback } = require('process')
 const Employee = require('../lib/Employee')
 
 describe("employee", () => {

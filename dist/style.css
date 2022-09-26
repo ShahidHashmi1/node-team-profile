@@ -1,0 +1,7 @@
+#jumboTron {
+    display: flex;
+    align-content: center;
+    background-color: rgb(115, 128, 128);
+    color: brown;
+    text-shadow: 1px 1px white;
+}
