@@ -1,10 +1,14 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Egineer');
 
+const generateHTML = require('./src/generateHTML')
+
 const teamInfo = [];
+const teamString = teamInfo.toString('')
 
 const questions = [
     {
@@ -43,27 +47,6 @@ function managerPrompt () {
     
 }
 
-function addMembers() {
-    inquirer.prompt ([
-    {
-        type: 'list',
-        choices: ["Engineer", "Intern", "Finished building my team"],
-        message: 'Please list the team member',
-        name: 'teamMember'
-    }
-    ]).then((response) => {
-        if (response.teamMember === "Engineer") {
-            engineerPrompt();
-        } if(response.teamMember === "Intern") {
-            internPrompt();
-        } if (response.teamMember === "Finished building my team") {
-            fs.writeFile('./dist/index.html', userAnswers(answers), (err) => 
-        err ? console.log(err) : console.log('Successfully created index.html')
-    );
-        }
-    })
-}
-
 function engineerPrompt () {
     inquirer.prompt ([
     {
@@ -84,21 +67,13 @@ function engineerPrompt () {
     {
         type: 'input',
         message: "What is the team-member's GitHub username?",
-        name: 'gitHubName' 
+        name: 'gitHub' 
     }
     ]).then((response) => {
         addMembers();
     })
 }
-// function managerPrompt () {
-//     inquirer.prompt ([
-//         {
-//            type: 'input',
-//            message: 'What is your office number?',
-//            name: 'offceNumber'
-//         },
-//     ])
-// }
+
 function internPrompt () {
     inquirer.prompt ([
         {
@@ -126,31 +101,30 @@ function internPrompt () {
     })
 }
 
-// const userAnswers = (answers) => {
-//     teamInfo.append(inquirer.prompt(questions).then((answers)))
-
-// console.log(teamInfo);
-
-// const userPrompt = function() {
-//     return inquirer.prompt(questions).then((answers) => {
-//         if (answers.teamMember === "Engineer") {
-//             engineerPrompt();
-//         } if(answers.teamMember === "Intern") {
-//             internPrompt();
-//         } if (answers.teamMember === "Finished building my team") {
-//             fs.writeFile('./dist/index.html', userAnswers(answers), (err) => 
-//         err ? console.log(err) : console.log('Successfully created index.html')
-//     );
-//         }
-//     })
-// }
-
-// function addEngineer () {
-//     inquirer.prompt(questions).then(reponse => {
-//         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHub)
-
-//     })
-// }
+function addMembers() {
+    inquirer.prompt ([
+    {
+        type: 'list',
+        choices: ["Engineer", "Intern", "Finished building my team"],
+        message: 'Please list the team member',
+        name: 'teamMember'
+    }
+    ]).then((response) => {
+        if (response.teamMember === "Engineer") {
+            const engineer = new Engineer(response.name, response.id, response.email, response.gitHub)
+            engineerPrompt(engineer);
+            teamInfo.push(engineer);
+        } if(response.teamMember === "Intern") {
+            const intern = new Intern(response.name, response.id, response.email, response.school)
+            internPrompt(intern);
+            teamInfo.push(intern)
+        } if (response.teamMember === "Finished building my team") {
+            fs.writeFile('./dist/index.html', generateHTML.toString(), (err) => 
+        err ? console.log(err) : console.log('Successfully created team page.')
+    );
+        }
+    })
+}
 
 function init() {
     managerPrompt()
@@ -158,12 +132,3 @@ function init() {
 
 init();
 
-// .then(response => {
-//     const engineer = new Engineer(response.name, response.id, response.email, response.gitHubName)
-//     teamInfo.push(engineer);
-// })
-
-// .then(response => {
-//     const intern = new Intern(response.name, response.id, response.email, response.school)
-//     teamInfo.push(intern);
-// })
