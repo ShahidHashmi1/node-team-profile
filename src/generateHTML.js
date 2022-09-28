@@ -1,6 +1,6 @@
 const managerCard = (manager) => {
 return `
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-3" style="width: 15rem;">
     <div class="card-header text-white bg-secondary mt-2 mb-3">
     <h3>${manager.name}</h3>
     <h4>Manager</h4>
@@ -18,7 +18,7 @@ return `
 
 const engineerCard = (engineer) => {
 return `
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-3" style="width: 15rem;">
 <div class="card-header text-white bg-secondary mt-2 mb-3">
     <h3>${engineer.name}</h3>
     <h4>Engineer</h4>
@@ -36,7 +36,7 @@ return `
 
 const internCard = (intern) => {
 return `
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-3" style="width: 15rem;">
     <div class="card-header text-white bg-secondary mt-2 mb-3">
     <h3>${intern.name}</h3>
     <h4>Intern</h4>
@@ -52,7 +52,7 @@ return `
 `;
 }
 
-const outlineHTML = (allCards) => {
+const outlineHTML = (team) => {
 return `
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +83,7 @@ return `
 
     <div class="container">
         <div class="row justify-content-center" id="cards">
-        ${allCards}
+        ${team}
         </div>
     </div>
 
@@ -98,15 +98,15 @@ return `
 </html>`
 };
 
-const generateHTML = () => {
-    if (teamMember.choices === "manager") {
-        allCards.append(managerCard)
-    } if (teamMember.choices === "intern") {
-        allCards.append(internCard)
-    } if (teamMember.choices === "engineer") {
-        allCards.append(engineerCard)
+const generateHTML = (team) => {
+    if (teamMember === manager) {
+        team.append(managerCard)
+    } if (teamMember === intern) {
+        team.append(internCard)
+    } if (teamMember === engineer) {
+        team.append(engineerCard)
     }
-    return outlineHTML().toString;
+    return outlineHTML()
 }
 
 module.exports = generateHTML;

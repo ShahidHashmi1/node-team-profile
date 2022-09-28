@@ -8,7 +8,6 @@ const Engineer = require('./lib/Engineer');
 const generateHTML = require('./src/generateHTML')
 
 const teamInfo = [];
-const teamString = teamInfo.toString('')
 
 const questions = [
     {
@@ -70,6 +69,8 @@ function engineerPrompt () {
         name: 'gitHub' 
     }
     ]).then((response) => {
+        const engineer = new Engineer(response.name, response.id, response.email, response.gitHub)
+        teamInfo.push(engineer);
         addMembers();
     })
 }
@@ -97,6 +98,8 @@ function internPrompt () {
         name: 'school' 
         }
     ]).then((response) => {
+        const intern = new Intern(response.name, response.id, response.email, response.school)
+        teamInfo.push(intern)
         addMembers()
     })
 }
@@ -110,17 +113,14 @@ function addMembers() {
         name: 'teamMember'
     }
     ]).then((response) => {
-        const htmlPageContent = generateHTML(response); 
         if (response.teamMember === "Engineer") {
             const engineer = new Engineer(response.name, response.id, response.email, response.gitHub)
             engineerPrompt(engineer);
-            teamInfo.push(engineer);
         } if(response.teamMember === "Intern") {
             const intern = new Intern(response.name, response.id, response.email, response.school)
             internPrompt(intern);
-            teamInfo.push(intern)
         } if (response.teamMember === "Finished building my team") {
-            fs.writeFile('./dist/index.html', htmlPageContent, (err) => 
+            fs.writeFile('./dist/index.html', "generateHTML(teamInfo)", (err) => 
         err ? console.log(err) : console.log('Successfully created team page.')
     );
         }
@@ -133,4 +133,6 @@ function init() {
 
 init();
 
-module.export = teamInfo;
+// const finishTest = () => {
+//     console.log(teamInfo)
+// }

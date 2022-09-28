@@ -57,7 +57,7 @@ GIVEN a command-line application that accepts user input
   First we must install an IDE such as VSCode. Then we will need to have node.js installed if not already done. From there, it is a matter of importing the appropritate node packages such as inquirer for question prompts, and jest for testing purposes. 
 
   ## Usage
-  <p>The usage of this project will be for anyone looking to query or search employee's contact information related to GitHub and email address. </p>
+  <p>The usage of this project will be for anyone looking to query or search employee's contact information related to GitHub and email address.</p>
 
   ## Contributions
   <p>Contributors</p>
