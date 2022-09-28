@@ -119,10 +119,8 @@ function addMembers() {
         } else if(response.teamMember === "Intern") {
             const intern = new Intern(response.name, response.id, response.email, response.school)
             internPrompt(intern);
-        } else if (response.teamMember === "Finished building my team") {
-            fs.writeFile('./dist/index.html', generateHTML(teamInfo), (err) => 
-        err ? console.log(err) : console.log('Successfully created team page.')
-    );
+        } else {
+            writeFunction()
         }
     })
 }
@@ -131,4 +129,10 @@ function init() {
     managerPrompt()
 }
 
-init();
+const writeFunction = () => {
+        console.log(teamInfo)
+        fs.writeFile('./dist/index.html', generateHTML(teamInfo), (err) => 
+    err ? console.log(err) : console.log('Successfully created team page.')
+)}
+
+init()
