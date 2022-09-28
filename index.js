@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-const Engineer = require('./lib/Egineer');
+const Engineer = require('./lib/Engineer');
 
 const generateHTML = require('./src/generateHTML')
 
@@ -110,6 +110,7 @@ function addMembers() {
         name: 'teamMember'
     }
     ]).then((response) => {
+        const htmlPageContent = generateHTML(response); 
         if (response.teamMember === "Engineer") {
             const engineer = new Engineer(response.name, response.id, response.email, response.gitHub)
             engineerPrompt(engineer);
@@ -119,7 +120,7 @@ function addMembers() {
             internPrompt(intern);
             teamInfo.push(intern)
         } if (response.teamMember === "Finished building my team") {
-            fs.writeFile('./dist/index.html', generateHTML.toString(), (err) => 
+            fs.writeFile('./dist/index.html', htmlPageContent, (err) => 
         err ? console.log(err) : console.log('Successfully created team page.')
     );
         }
@@ -132,3 +133,4 @@ function init() {
 
 init();
 
+module.export = teamInfo;

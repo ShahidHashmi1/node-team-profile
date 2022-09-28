@@ -69,6 +69,4 @@ GIVEN a command-line application that accepts user input
 
   For additional information on my developments and projects, please see my GitHub profile at:
   <p><a href="https://www.github.com/ShahidHashmi1">ShahidHashmi1's Profile</a></p>
-  For additional questions, please feel free to send me a message below:
-  <p><a href="mailto: hashmi.pgh@gmail.com">Send Message</a></p>
   

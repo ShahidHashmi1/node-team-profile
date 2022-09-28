@@ -10,7 +10,7 @@ describe("employee", () => {
             })
     })
     describe("test all methods of employees", () => {
-        const employee = new Employee ("Nick", 120, "nick@aol.com")
+        const employee = new Employee ("Nick", 120, "nick@aol.com", "Employee")
             test("test getName, getId, getEmail, getRole", () => {
                 expect(employee.getName()).toEqual("Nick");
                 expect(employee.getId()).toEqual(120);

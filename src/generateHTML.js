@@ -1,5 +1,3 @@
-// const teamInfo = require('./index.js')
-
 const managerCard = (manager) => {
 return `
 <div class="card m-3" style="width: 18rem;">
@@ -100,8 +98,15 @@ return `
 </html>`
 };
 
-generateHTML = () => {
-
+const generateHTML = () => {
+    if (teamMember.choices === "manager") {
+        allCards.append(managerCard)
+    } if (teamMember.choices === "intern") {
+        allCards.append(internCard)
+    } if (teamMember.choices === "engineer") {
+        allCards.append(engineerCard)
     }
+    return outlineHTML().toString;
+}
 
 module.exports = generateHTML;
