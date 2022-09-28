@@ -116,11 +116,11 @@ function addMembers() {
         if (response.teamMember === "Engineer") {
             const engineer = new Engineer(response.name, response.id, response.email, response.gitHub)
             engineerPrompt(engineer);
-        } if(response.teamMember === "Intern") {
+        } else if(response.teamMember === "Intern") {
             const intern = new Intern(response.name, response.id, response.email, response.school)
             internPrompt(intern);
-        } if (response.teamMember === "Finished building my team") {
-            fs.writeFile('./dist/index.html', "generateHTML(teamInfo)", (err) => 
+        } else if (response.teamMember === "Finished building my team") {
+            fs.writeFile('./dist/index.html', generateHTML(teamInfo), (err) => 
         err ? console.log(err) : console.log('Successfully created team page.')
     );
         }
@@ -132,7 +132,3 @@ function init() {
 }
 
 init();
-
-// const finishTest = () => {
-//     console.log(teamInfo)
-// }
