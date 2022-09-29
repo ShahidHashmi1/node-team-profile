@@ -67,6 +67,10 @@ GIVEN a command-line application that accepts user input
 
   ## Questions
 
+
+https://user-images.githubusercontent.com/109056779/192923169-17074536-8a26-45cf-807d-70ba7ee5e523.mp4
+
+
   The deployment of this project can be found through <a href="https://drive.google.com/file/d/1kIOHo29GVZHmxnDdoeGkwNVEFtLaPF5M/view?usp=sharing">this link here.</a>
 
   For additional information on my developments and projects, please see my GitHub profile at:
